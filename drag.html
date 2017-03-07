@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Dragger</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style type="text/css">
+			.left-section{
+				border: solid 1px black;				
+				width:350px;
+				height: 500px;
+				float:left;
+				position:absolute;
+				left: 0;
+			}
+			.right-section{
+				border: solid 1px red;
+				width: 900px;
+				float: left;
+				height: 500px;
+				position:absolute;
+				left: 355px;
+			}
+			.drag-handle{
+				width: 5px;
+				background: #ccc;
+				height: 500px;
+				float: left;
+				position:absolute;
+				left: 350px;
+				cursor: col-resize;
+			}
+		</style>
+    </head>
+    <body>
+		
+		<div class="left-section">left</div>
+		<div class="drag-handle">Dragger</div>
+		<div class="right-section">right</div>
+        
+        <script src="js/jquery.min.js"></script> 
+        <script src="js/jquery.ui.custom.js"></script> 
+		<script>
+			$(function(){
+				$('.drag-handle').draggable({
+					axis: 'x',
+					drag: function(event, ui ){
+						console.log(ui.position.left);
+						$('.left-section').css('width',ui.position.left);
+						$('.right-section').css('left',ui.position.left+parseInt($('.drag-handle').css('width')));
+					}
+				})
+			});
+		</script>
+    </body>
+</html>
+	
